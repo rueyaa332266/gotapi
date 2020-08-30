@@ -1,0 +1,73 @@
+{
+  "_from": "node-gotapi",
+  "_id": "node-gotapi@0.4.3",
+  "_inBundle": false,
+  "_integrity": "sha512-0MBmoXin0RyNr+nxM+2zKHvCgXaoOWUwmmpGrauLDsaPWJFmULOFR6bd9X86LcRjaz9X1t/SPWiUJ2iBhYxRQw==",
+  "_location": "/node-gotapi",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "node-gotapi",
+    "name": "node-gotapi",
+    "escapedName": "node-gotapi",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/node-gotapi/-/node-gotapi-0.4.3.tgz",
+  "_shasum": "6e1793fdf4d17aa08c0924384941c8add3c0f3cb",
+  "_spec": "node-gotapi",
+  "_where": "/Users/jyeruey",
+  "author": {
+    "name": "Futomi Hatano",
+    "email": "futomi.hatano@gmail.com",
+    "url": "https://github.com/futomi"
+  },
+  "bugs": {
+    "url": "https://github.com/futomi/node-gotapi/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "fs-extra": ">=1.0.0",
+    "pem": ">=1.9.4",
+    "request": "^2.88.2",
+    "websocket": ">=1.0.24"
+  },
+  "deprecated": false,
+  "description": "The node-gotapi is a Node.js implementation of the Generic Open Terminal API Framework (GotAPI) developed by the Open Mobile Alliance (OMA).",
+  "directories": {
+    "lib": "./lib"
+  },
+  "files": [
+    "lib",
+    "html-default",
+    "imgs",
+    "plugins-default",
+    "config-default.js",
+    "start-gotapi-debug.js",
+    "start-gotapi.js"
+  ],
+  "homepage": "https://github.com/futomi",
+  "keywords": [
+    "GotAPI",
+    "OMA",
+    "Generic Open Terminal API Framework",
+    "Open Mobile Alliance"
+  ],
+  "license": "MIT",
+  "main": "./start-gotapi.js",
+  "name": "node-gotapi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/futomi/node-gotapi.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.4.3"
+}

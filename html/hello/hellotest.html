@@ -1,0 +1,24 @@
+<p id="res"></p>
+
+<script src="/gotapi-client.js"></script>
+
+<script>
+'use strict';
+
+let gotapi = new GotapiClient();
+
+gotapi.connect().then((services) => {
+  return gotapi.request({
+    method    : 'get',
+    serviceId : 'com.test.hello',
+    profile   : 'echo',
+    attribute : '',
+    msg       : 'hello!'
+  });
+}).then((res) => {
+  document.querySelector('#res').textContent = res['data'];
+}).catch((error) => {
+  document.querySelector('#res').textContent = error.message;
+});
+
+</script>
