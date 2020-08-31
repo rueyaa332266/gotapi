@@ -10,10 +10,9 @@ let gotapi = new GotapiClient();
 gotapi.connect().then((services) => {
   return gotapi.request({
     method    : 'get',
-    serviceId : 'com.test.hello',
-    profile   : 'echo',
-    attribute : '',
-    msg       : 'hello!'
+    serviceId : 'com.heatmap',
+    profile   : 'area',
+    area       : 'b'
   });
 }).then((res) => {
   document.querySelector('#res').textContent = res['data'];
