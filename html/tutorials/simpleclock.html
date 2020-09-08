@@ -80,7 +80,7 @@ var monitor = (new GotapiMonitor(gotapi)).init();
 
 gotapi.connect().then((services) => {
 	let btn_el = document.querySelector('#btn');
-	btn_el.addEventListener('click', clickHeatmap, false);
+	btn_el.addEventListener('click', clickedButton, false);
 }).catch((error) => {
 	document.querySelector('#res').textContent = error.message;
 });
@@ -97,22 +97,6 @@ function clickedButton(event) {
 			document.querySelector('#res').textContent = message['data'];
 		};
 		btn_el.textContent = (btn_el.textContent === 'Start') ? 'Stop' : 'Start';
-	}).catch((error) => {
-		window.alert(error.message);
-	});
-}
-
-function clickHeatmap(event) {
-	let btn_el = event.target;
-	gotapi.request({
-		method    : 'get',
-		serviceId : 'com.heatmap',
-		profile   : 'humidity',
-		area       : 'a'
-	}).then((res) => {
-		gotapi.onmessage = (message) => {
-			document.querySelector('#res').textContent = message['data'];
-		};
 	}).catch((error) => {
 		window.alert(error.message);
 	});

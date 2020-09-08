@@ -75,7 +75,8 @@ GotapiPlugin.prototype.saveConfigurations = function(message) {
       color      : message['params']['color'],
       brightness : message['params']['brightness'],
       flashing   : message['params']['flashing'],
-      power      : c['power']
+      power      : c['power'],
+      temp       : message['params']['temp']
     };
     return this.configurations[lightId];
   } else {

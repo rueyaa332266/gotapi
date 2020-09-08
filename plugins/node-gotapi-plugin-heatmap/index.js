@@ -41,6 +41,8 @@ GotapiPlugin.prototype.heatmapGet = function(message) {
     } else if(message['profile'] === 'humidity') {
       this.getAreaHumi(message);
     }
+  } else if(message['method'] === 'delete') {
+    this.stopShowing(message);
   } else {
     message['result'] = 400;
     message['data'] = null;
@@ -122,6 +124,16 @@ GotapiPlugin.prototype.getAreaHumi = function(message) {
     })
     this.util.pushMessage(message);
   }, 3000);
+};
+
+GotapiPlugin.prototype.stopShowing = function(message) {
+  if(this.heatmap_id) {
+    clearInterval(this.heatmap_id);
+    this.heatmap_id = 0;
+  }
+  message['result'] = 0;
+  message['data'] = null;
+  this.util.returnMessage(message);
 };
 
 module.exports = GotapiPlugin;
