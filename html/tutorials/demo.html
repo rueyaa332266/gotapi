@@ -45,12 +45,6 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="color-1" class="col-sm-2 control-label">Color</label>
-							<div class="col-sm-10">
-								<input type="color" id="color-1" name="color" value="#ffffff">
-							</div>
-						</div>
-						<div class="form-group">
 							<div class="col-sm-10">
 								<button type="button" id="btn_at" name="heatmap">Start</button>
 							</div>
@@ -94,9 +88,6 @@ function prepareForms() {
 		}
 		requestTurnPowerStatus($(event.target.form));
 	});
-	$('input[name="color"]').on('change', (event) => {
-		requestForm($(event.target.form), 'put');
-	});
 	$('button[name="heatmap"]').on('click', (event) => {
 		let btn_el = $(event.target);
 		if(btn_el.text() === 'Start') {
@@ -107,6 +98,12 @@ function prepareForms() {
 		let status = (btn_el.text() === 'Start') ? false : true;
 		let method = (status === true) ? 'get' : 'delete';
 		clickATemp($(event.target.form), method);
+	});
+	$('#temp-1').bind('DOMSubtreeModified', (event) => {
+		let sw = document.getElementById("power-1");
+		if ( $('#temp-1').val() >= 25 && $('#power-1').text() == "ON") {
+			sw.click();
+    	}
 	});
 }
 
@@ -119,25 +116,21 @@ function requestTurnPowerStatus(form_el) {
 
 function requestForm(form_el, method) {
 	let lightId = form_el.find('input[name="lightId"]').val();
-	let color = form_el.find('input[name="color"]').val();
-	let temp = document.querySelector('#temp-1').textContent.replace("°C","")
 	gotapi.request({
 		method    : method,
 		serviceId : 'com.github.futomi.lightemulator.light',
 		profile   : 'light',
 		attribute : '',
 		lightId   : lightId,
-		color     : color,
 		brightness: "1.0",
 		flashing  : "300",
-		temp      : temp
+		temp      : $('#temp-1').val()
 	}).catch((error) => {
 		window.alert(error.message);
 	});
 }
 
 function clickATemp(form_el, method) {
-	let color = form_el.find('input[name="color"]').val();
 	gotapi.request({
 		method    : method,
 		serviceId : 'com.heatmap',
@@ -148,7 +141,9 @@ function clickATemp(form_el, method) {
 			if(message['data'] === null){
 				message['data'] = ' - ';
 			}
-			document.querySelector('#temp-1').textContent = message['data'] + "°C";
+			let temperature = message['data'];
+			document.querySelector('#temp-1').value = temperature;
+			document.querySelector('#temp-1').textContent = temperature + "°C";
 		};
 	}).catch((error) => {
 		window.alert(error.message);
